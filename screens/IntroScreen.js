@@ -1,6 +1,6 @@
-import {View, ImageBackground, StyleSheet, Text, TouchableOpacity } from "react-native";
-import introImage from '../assets/intro.png';
-import {StatusBar} from "expo-status-bar";
+import { View, ImageBackground, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import introImage from "../assets/intro.png";
 import { COLORS } from "../constants/colors";
 
 const IntroScreen = ({ navigation }) => {
@@ -11,7 +11,7 @@ const IntroScreen = ({ navigation }) => {
 				<View style={styles.footer}>
 					<Text style={styles.primaryTitle}>Samurai <Text style={styles.secondaryTitle}>Sushi</Text></Text>
 					<Text style={styles.description}>Доставка суши менее чем за 45 минут</Text>
-					<TouchableOpacity style={styles.footerButton} activeOpacity={0.6} onPress={() => navigation.navigate("Home")}>
+					<TouchableOpacity style={styles.footerButton} activeOpacity={0.6} onPress={() => navigation.navigate("Drawer")}>
 						<Text style={styles.footerButtonText}>Начать</Text>
 					</TouchableOpacity>
 				</View>
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
 	},
 	primaryTitle: {
 		fontSize: 32,
-		fontWeight: 700,
+		fontWeight: "700",
 		marginBottom: 10
 	},
 	secondaryTitle: {
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
 		color: "#ffffff",
 		textAlign: "center",
 		fontSize: 24,
-		fontWeight: 600
+		fontWeight: "600"
 	}
 })
 
