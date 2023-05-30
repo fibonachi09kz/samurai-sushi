@@ -1,12 +1,12 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {View, StyleSheet, ScrollView} from "react-native";
 
-const FavoritesScreen = () => {
+const CartScreen = ({  }) => {
 	return (
 		<ScrollView style={styles.main}>
 
 		</ScrollView>
-	)
-}
+	);
+};
 
 const styles = StyleSheet.create({
 	main: {
@@ -15,4 +15,4 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default FavoritesScreen;
+export default CartScreen;

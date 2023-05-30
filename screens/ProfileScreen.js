@@ -1,11 +1,12 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet} from "react-native";
 
-const FavoritesScreen = () => {
+
+const ProfileScreen = ({  }) => {
 	return (
 		<ScrollView style={styles.main}>
 
 		</ScrollView>
-	)
+	);
 }
 
 const styles = StyleSheet.create({
@@ -14,5 +15,4 @@ const styles = StyleSheet.create({
 		backgroundColor: "#FFFFFF"
 	}
 })
-
-export default FavoritesScreen;
+export default ProfileScreen;

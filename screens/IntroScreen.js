@@ -11,7 +11,7 @@ const IntroScreen = ({ navigation }) => {
 				<View style={styles.footer}>
 					<Text style={styles.primaryTitle}>Samurai <Text style={styles.secondaryTitle}>Sushi</Text></Text>
 					<Text style={styles.description}>Доставка суши менее чем за 45 минут</Text>
-					<TouchableOpacity style={styles.footerButton} activeOpacity={0.6} onPress={() => navigation.navigate("Drawer")}>
+					<TouchableOpacity style={styles.footerButton} activeOpacity={0.6} onPress={() => navigation.navigate("Root")}>
 						<Text style={styles.footerButtonText}>Начать</Text>
 					</TouchableOpacity>
 				</View>
