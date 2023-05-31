@@ -5,31 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="511e00c5-2da3-47c4-9d65-800c34e8694a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/components/CategoriesBlock/CategoriesBlock.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/CategoriesBlock/CategoryItem.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/RecommendedBlock/RecommendedBlock.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/RecommendedBlock/RecommendedItem.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/product.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/navigation/SidebarMenu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/navigation/StackNavigation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/navigation/TabsNavigation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/screens/CartScreen.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/screens/DashboardScreen.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/screens/ProductDetailScreen.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/screens/ProfileScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/navigation/DrawerNavigation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/Categories/CategoriesScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/Home/HomeScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/ProductList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/CategoryGridTile.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/IconButton.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/dummy-data.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/placeholder.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/category.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/category.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/meal.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/CategoriesScreen.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/FavoritesScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/FavoritesScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/IntroScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/IntroScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/RecommendedBlock/RecommendedItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/RecommendedBlock/RecommendedItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/placeholder.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/placeholder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigation/SidebarMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/SidebarMenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigation/StackNavigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/StackNavigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigation/TabsNavigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/TabsNavigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/CartScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Cart/CartScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/DashboardScreen.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/FavoritesScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Favorite/FavoritesScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/ProductDetailScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/ProductDetailScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/ProfileScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Profile/ProfileScreen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +54,10 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\test5\Documents\GitHub\samurai-sushi\screens\Profile" />
+      <recent name="C:\Users\test5\Documents\GitHub\samurai-sushi\screens\Cart" />
+      <recent name="C:\Users\test5\Documents\GitHub\samurai-sushi\screens\Favorite" />
+      <recent name="C:\Users\test5\Documents\GitHub\samurai-sushi\screens\Home" />
       <recent name="C:\Users\test5\Documents\GitHub\samurai-sushi\components\CategoriesBlock" />
     </key>
   </component>
@@ -80,6 +75,7 @@
       <workItem from="1685350024888" duration="9868000" />
       <workItem from="1685416003036" duration="23123000" />
       <workItem from="1685445496517" duration="2312000" />
+      <workItem from="1685502196228" duration="12804000" />
     </task>
     <servers />
   </component>

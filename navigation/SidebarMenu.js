@@ -1,10 +1,12 @@
 import {FlatList, TouchableOpacity, StyleSheet, Text, SafeAreaView, View} from "react-native";
 import {CATEGORIES} from "../data/placeholder";
+import {useNavigation} from "@react-navigation/native";
 
-const SidebarMenu = ({ navigation }) => {
+const SidebarMenu = () => {
 
-	const navigateToCategory = (category) => {
-		navigation.navigate('Dashboard', { category });
+	const navigation = useNavigation()
+	const pressHandler = (category) => {
+		navigation.navigate('ProductList', { category: category });
 	};
 
 	return (
@@ -12,9 +14,9 @@ const SidebarMenu = ({ navigation }) => {
 			<View style={styles.container}>
 				<FlatList
 					data={CATEGORIES}
-					renderItem={(item) => (
-						<TouchableOpacity style={styles.menuItem} onPress={() => navigateToCategory('Category 1')}>
-							<Text style={styles.menuItemText}>{item.item.title}</Text>
+					renderItem={({ item }) => (
+						<TouchableOpacity style={styles.menuItem} onPress={() => pressHandler(item)}>
+							<Text style={styles.menuItemText}>{item.title}</Text>
 						</TouchableOpacity>
 					)}
 				/>
@@ -34,7 +36,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 20,
 		marginBottom: 12,
 		borderRadius: 6,
-		backgroundColor: "#eeeeee"
+		backgroundColor: "#f5f5f5"
 	},
 	menuItemText: {
 		fontSize: 16,

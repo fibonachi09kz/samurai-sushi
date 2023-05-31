@@ -1,4 +1,5 @@
 import {Image, Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import {CURRENCIES} from "../../constants/global";
 
 const RecommendedItem = ({ pressHandler, product }) => {
 	return (
@@ -17,6 +18,7 @@ const RecommendedItem = ({ pressHandler, product }) => {
 			<View style={styles.infoWrapper}>
 				<Text style={styles.title} numberOfLines={1}>{product.title}</Text>
 				<Text style={styles.description} numberOfLines={2}>{product.description}</Text>
+				<Text style={styles.productPrice}>{product.price} <Text>{CURRENCIES[0].symbol}</Text></Text>
 			</View>
 
 		</TouchableOpacity>
@@ -51,7 +53,11 @@ const styles = StyleSheet.create({
 		marginBottom: 8
 	},
 	description: {
-
+		marginBottom: 10
+	},
+	productPrice: {
+		fontSize: 22,
+		fontWeight: "600"
 	}
 })
 

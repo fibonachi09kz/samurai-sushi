@@ -2,22 +2,35 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {TouchableOpacity} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
 import {COLORS} from "../constants/colors";
-import FavoritesScreen from "../screens/FavoritesScreen";
-import CartScreen from "../screens/CartScreen";
-import ProfileScreen from "../screens/ProfileScreen";
-import DashboardScreen from "../screens/DashboardScreen";
+import FavoritesScreen from "../screens/Favorite/FavoritesScreen";
+import CartScreen from "../screens/Cart/CartScreen";
+import ProfileScreen from "../screens/Profile/ProfileScreen";
+import {StackNavigatorCategories, StackNavigatorHome} from "./StackNavigation";
+import CategoriesScreen from "../screens/Categories/CategoriesScreen";
 
 const Tab = createBottomTabNavigator();
-const TabNavigation = () => (
+const TabsNavigation = () => (
 	<Tab.Navigator>
 		<Tab.Screen
-			name="Dashboard"
-			component={DashboardScreen}
+			name="HomeStack"
+			component={StackNavigatorHome}
 			options={{
-				title: "Домой",
+				title: "Главная",
+				tabBarButton: (props) => <TouchableOpacity {...props} />,
+				tabBarIcon: ({ focused }) => <Ionicons name="home-outline" size={26} color={focused ? COLORS.mainRed : "black"} />,
+				tabBarShowLabel: false,
+				headerShown: false
+			}}
+		/>
+		<Tab.Screen
+			name="CategoriesStack"
+			component={StackNavigatorCategories}
+			options={{
+				title: "Категории",
 				tabBarButton: (props) => <TouchableOpacity {...props} />,
 				tabBarIcon: ({ focused }) => <Ionicons name="list" size={32} color={focused ? COLORS.mainRed : "black"} />,
 				tabBarShowLabel: false,
+				headerShown: false
 			}}
 		/>
 		<Tab.Screen
@@ -27,7 +40,8 @@ const TabNavigation = () => (
 				title: "Избранное",
 				tabBarButton: (props) => <TouchableOpacity {...props} />,
 				tabBarIcon: ({ focused }) => <Ionicons name="heart-circle-outline" size={32} color={focused ? COLORS.mainRed : "black"} />,
-				tabBarShowLabel: false
+				tabBarShowLabel: false,
+				headerShown: false
 			}}
 		/>
 		<Tab.Screen
@@ -38,7 +52,8 @@ const TabNavigation = () => (
 				tabBarButton: (props) => <TouchableOpacity {...props} />,
 				tabBarIcon: ({ focused }) => <Ionicons name="basket-outline" size={32} color={focused ? COLORS.mainRed : "black"} />,
 				tabBarShowLabel: false,
-				tabBarBadge: 3
+				tabBarBadge: 3,
+				headerShown: false
 			}}
 		/>
 		<Tab.Screen
@@ -49,9 +64,10 @@ const TabNavigation = () => (
 				tabBarButton: (props) => <TouchableOpacity {...props} />,
 				tabBarIcon: ({ focused }) => <Ionicons name="person-circle-outline" size={32} color={focused ? COLORS.mainRed : "black"} />,
 				tabBarShowLabel: false,
+				headerShown: false
 			}}
 		/>
 	</Tab.Navigator>
 );
 
-export default TabNavigation;
+export default TabsNavigation;
