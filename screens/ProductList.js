@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
 		borderRadius: 6,
 		borderWidth: 1,
 		borderStyle: "solid",
-		borderColor: "#e0e0e0"
+		borderColor: "#e0e0e0",
+		marginBottom: 20
 	},
 	imageWrapper: {
 		height: 120,

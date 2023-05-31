@@ -5,22 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="511e00c5-2da3-47c4-9d65-800c34e8694a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/navigation/DrawerNavigation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/screens/Categories/CategoriesScreen.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/screens/Home/HomeScreen.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/screens/ProductList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/context/cart-context.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/RecommendedBlock/RecommendedItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/RecommendedBlock/RecommendedItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/placeholder.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/placeholder.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/navigation/SidebarMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/SidebarMenu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/StackNavigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/StackNavigation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/TabsNavigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/TabsNavigation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/CartScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Cart/CartScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/DashboardScreen.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/FavoritesScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Favorite/FavoritesScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Cart/CartScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Cart/CartScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/ProductDetailScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/ProductDetailScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/ProfileScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Profile/ProfileScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/ProductList.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/ProductList.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +68,8 @@
       <workItem from="1685350024888" duration="9868000" />
       <workItem from="1685416003036" duration="23123000" />
       <workItem from="1685445496517" duration="2312000" />
-      <workItem from="1685502196228" duration="12804000" />
+      <workItem from="1685502196228" duration="12820000" />
+      <workItem from="1685520000208" duration="12759000" />
     </task>
     <servers />
   </component>

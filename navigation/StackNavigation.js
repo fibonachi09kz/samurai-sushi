@@ -6,6 +6,7 @@ import {Ionicons} from "@expo/vector-icons";
 import CategoriesScreen from "../screens/Categories/CategoriesScreen";
 import ProductList from "../screens/ProductList";
 import {useNavigation} from "@react-navigation/native";
+import CartScreen from "../screens/Cart/CartScreen";
 
 const Stack = createStackNavigator();
 export const StackNavigatorHome = ({ navigation }) => (
@@ -82,6 +83,30 @@ export const StackNavigatorCategories = ({ navigation }) => {
 						</TouchableOpacity>
 					)
 				})}
+			/>
+
+		</Stack.Navigator>
+	);
+}
+
+
+export const StackNavigatorCart = ({ navigation }) => {
+
+	return (
+		<Stack.Navigator
+			initialRouteName="Cart"
+		>
+			<Stack.Screen
+				name="Cart"
+				component={CartScreen}
+				options={{
+					headerTitle: "Cart",
+					headerLeft: () => (
+						<TouchableOpacity style={styles.menuBtn} onPress={() => navigation.openDrawer()}>
+							<Ionicons name="menu" size={28} color="black"/>
+						</TouchableOpacity>
+					)
+				}}
 			/>
 
 		</Stack.Navigator>

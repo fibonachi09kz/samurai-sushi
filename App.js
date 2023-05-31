@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer, useNavigationState } from "@react-navigation/native";
 import DrawerNavigation from "./navigation/DrawerNavigation";
 import {useRef} from "react";
+import CartContextProvider from "./store/context/cart-context";
 
 const App = () => {
 
@@ -22,9 +23,11 @@ const App = () => {
 	return (
 		<>
 			<StatusBar style="dark" />
-			<NavigationContainer ref={navigationRef} onStateChange={handleNavigationStateChange}>
-				<DrawerNavigation />
-			</NavigationContainer>
+			<CartContextProvider>
+				<NavigationContainer ref={navigationRef} onStateChange={handleNavigationStateChange}>
+					<DrawerNavigation />
+				</NavigationContainer>
+			</CartContextProvider>
 		</>
 
 	);
