@@ -1,6 +1,9 @@
-import {FlatList, StyleSheet, Text, TouchableOpacity, View, Image} from "react-native";
+import {FlatList, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView} from "react-native";
 import {CATEGORIES, PRODUCTS} from "../data/placeholder";
 import {CURRENCIES} from "../constants/global";
+import {AntDesign} from "@expo/vector-icons";
+import {COLORS} from "../constants/colors";
+import ProductListed from "../components/Product/ProductListed";
 
 const ProductList = ({ navigation, route }) => {
 
@@ -14,34 +17,14 @@ const ProductList = ({ navigation, route }) => {
 	}
 
 	return (
-		<View style={styles.main}>
+		<ScrollView style={styles.main}>
 			<Text style={styles.title}>{currentCategory.title}</Text>
-			<FlatList
-				data={filteredProducts}
-				renderItem={({ item }) => (
-					<TouchableOpacity style={styles.productItem} activeOpacity={0.7} onPress={() => pressHandler(item)}>
-						<View style={styles.imageWrapper}>
-							<Image
-								source={{
-									uri: item.imageUrl,
-								}}
-								style={styles.image}
-								resizeMode="cover"
-							/>
-						</View>
-
-						<View style={styles.infoWrapper}>
-							<Text style={styles.productTitle} numberOfLines={1}>{item.title}</Text>
-							<Text style={styles.productDescription} numberOfLines={2}>{item.description}</Text>
-							<Text style={styles.productPrice}>{item.price} <Text>{CURRENCIES[0].symbol}</Text></Text>
-						</View>
-					</TouchableOpacity>
-				)}
-				keyExtractor={(item) => item.id}
-				numColumns={2}
-				columnWrapperStyle={{gap: 20}}
-			/>
-		</View>
+			<View style={styles.items}>
+				{filteredProducts.map((item) => (
+					<ProductListed key={item.id} product={item} />
+				))}
+			</View>
+		</ScrollView>
 	)
 }
 
@@ -52,45 +35,13 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: "#FFFFFF"
 	},
+	items: {
+		paddingBottom: 50
+	},
 	title: {
 		fontSize: 24,
 		fontWeight: "500",
 		marginBottom: 12
-	},
-	productItem: {
-		flex: 1,
-		borderRadius: 6,
-		borderWidth: 1,
-		borderStyle: "solid",
-		borderColor: "#e0e0e0",
-		marginBottom: 20
-	},
-	imageWrapper: {
-		height: 120,
-		width: "100%",
-		borderTopLeftRadius: 6,
-		borderTopRightRadius: 6,
-		overflow: "hidden"
-	},
-	image: {
-		width: "100%",
-		height: "100%"
-	},
-	infoWrapper: {
-		paddingVertical: 15,
-		paddingHorizontal: 10
-	},
-	productTitle: {
-		fontWeight: "600",
-		fontSize: 16,
-		marginBottom: 8
-	},
-	productDescription: {
-		marginBottom: 10
-	},
-	productPrice: {
-		fontSize: 22,
-		fontWeight: "600"
 	}
 })
 

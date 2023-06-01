@@ -17,7 +17,7 @@ export const StackNavigatorHome = ({ navigation }) => (
 			name="Home"
 			component={HomeScreen}
 			options={{
-				headerTitle: "Home Screen",
+				headerTitle: "",
 				headerLeft: () => (
 					<TouchableOpacity style={styles.menuBtn} onPress={() => navigation.openDrawer()}>
 						<Ionicons name="menu" size={28} color="black"/>
@@ -29,7 +29,7 @@ export const StackNavigatorHome = ({ navigation }) => (
 			name="ProductDetail"
 			component={ProductDetailScreen}
 			options={({ navigation }) => ({
-				headerTitle: "Product Detail",
+				headerTitle: "",
 				headerLeft: () => (
 					<TouchableOpacity style={styles.menuBtn} onPress={() => navigation.goBack()}>
 						<Ionicons name="chevron-back" size={28} color="black" />
@@ -50,7 +50,7 @@ export const StackNavigatorCategories = ({ navigation }) => {
 				name="Categories"
 				component={CategoriesScreen}
 				options={{
-					headerTitle: "Categories Screen",
+					headerTitle: "",
 					headerLeft: () => (
 						<TouchableOpacity style={styles.menuBtn} onPress={() => navigation.openDrawer()}>
 							<Ionicons name="menu" size={28} color="black"/>
@@ -63,7 +63,7 @@ export const StackNavigatorCategories = ({ navigation }) => {
 				name="ProductList"
 				component={ProductList}
 				options={{
-					headerTitle: "Product List",
+					headerTitle: "",
 					headerLeft: () => (
 						<TouchableOpacity style={styles.menuBtn} onPress={() => navigation.navigate("Categories")}>
 							<Ionicons name="chevron-back" size={28} color="black" />
@@ -76,7 +76,7 @@ export const StackNavigatorCategories = ({ navigation }) => {
 				name="ProductDetail"
 				component={ProductDetailScreen}
 				options={({ navigation }) => ({
-					headerTitle: "Product Detail",
+					headerTitle: "",
 					headerLeft: () => (
 						<TouchableOpacity style={styles.menuBtn} onPress={() => navigation.goBack()}>
 							<Ionicons name="chevron-back" size={28} color="black" />
@@ -100,7 +100,7 @@ export const StackNavigatorCart = ({ navigation }) => {
 				name="Cart"
 				component={CartScreen}
 				options={{
-					headerTitle: "Cart",
+					headerTitle: "",
 					headerLeft: () => (
 						<TouchableOpacity style={styles.menuBtn} onPress={() => navigation.openDrawer()}>
 							<Ionicons name="menu" size={28} color="black"/>

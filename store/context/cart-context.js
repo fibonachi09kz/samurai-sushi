@@ -3,6 +3,7 @@ import {createContext, useState} from "react";
 export const CartContext = createContext({
 	products: [],
 	addProduct: (product, count) => {},
+	editProduct: (product, count) => {},
 	removeProduct: (id) => {}
 });
 
@@ -22,6 +23,17 @@ function CartContextProvider({children}) {
 		}
 	}
 
+	function editProduct(product, count) {
+		setProducts((currentProducts) => {
+			return currentProducts.map((item) => {
+				if (item.product.id === product.id) {
+					return { product, count };
+				}
+				return item;
+			});
+		});
+	}
+
 	function removeProduct(id) {
 		setProducts((currentProducts) => currentProducts.filter((prod) => prod.product.id !== id ))
 	}
@@ -29,6 +41,7 @@ function CartContextProvider({children}) {
 	const value = {
 		products: products,
 		addProduct: addProduct,
+		editProduct: editProduct,
 		removeProduct: removeProduct
 	}
 

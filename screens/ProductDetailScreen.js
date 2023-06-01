@@ -12,11 +12,17 @@ const ProductDetailScreen = ({ route }) => {
 	const cartProductCtx = useContext(CartContext)
 
 	const product = route.params.product
-	const category = CATEGORIES.filter((category) => category.id === product.categoryIds)
 
 	const isProductInCart = cartProductCtx.products.some(item => item.product.id === product.id);
 
 	const [count, setCount] = useState(1)
+
+
+	function getCountInCart(productId) {
+		const cartItem = cartProductCtx.products.find((item) => item.product.id === productId);
+		return cartItem ? cartItem.count : 0;
+	}
+
 
 	const inc = () => {
 		if (count !== 99) {
@@ -46,10 +52,7 @@ const ProductDetailScreen = ({ route }) => {
 						<Text style={styles.price}>{product.price} {CURRENCIES[0].symbol}</Text>
 					</View>
 					<Text style={styles.description}>{product.description}</Text>
-					<Text style={styles.category}>Категория: {category.title}</Text>
 				</View>
-
-
 			</ScrollView>
 			<View style={styles.actions}>
 				<View style={styles.actionsWrapper}>
@@ -61,8 +64,9 @@ const ProductDetailScreen = ({ route }) => {
 						<AntDesign name="plus" size={24} color="#d7000f" />
 					</TouchableOpacity>
 				</View>
-				<TouchableOpacity style={styles.toBasket} onPress={() => addToBasket()}>
-					<Text style={styles.toBasketText}>В корзину {count * product.price}</Text>
+				<TouchableOpacity style={[styles.toBasket, {backgroundColor: isProductInCart ? "#12af00" : COLORS.mainRed}]} onPress={() => addToBasket()}>
+					<Text style={styles.toBasketText}>В корзину {count * product.price} {CURRENCIES[0].symbol}</Text>
+					{isProductInCart ? <Text style={styles.inCart}>В корзине {getCountInCart(product.id)} шт.</Text> : null}
 				</TouchableOpacity>
 			</View>
 		</>
@@ -77,9 +81,14 @@ const styles = StyleSheet.create({
 		backgroundColor: "#FFFFFF",
 		position: "relative"
 	},
+	inCart: {
+		fontSize: 12,
+		color: "#FFFFFF",
+		marginTop: 3
+	},
 	imageWrapper: {
 		width: "100%",
-		height: 150,
+		height: 170,
 		overflow: "hidden",
 		borderRadius: 10,
 		marginBottom: 20
