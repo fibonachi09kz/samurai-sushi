@@ -5,19 +5,32 @@ import {useRef} from "react";
 import CartContextProvider from "./store/context/cart-context";
 import FavoriteContext from "./store/context/favorite-context";
 import FavoritesContextProvider from "./store/context/favorite-context";
+import AuthContextProvider from "./store/context/auth-context";
 
 const App = () => {
 
 	return (
 		<>
 			<StatusBar style="dark" />
-			<FavoritesContextProvider>
-				<CartContextProvider>
-					<NavigationContainer>
-						<DrawerNavigation />
-					</NavigationContainer>
-				</CartContextProvider>
-			</FavoritesContextProvider>
+
+			<AuthContextProvider>
+
+				<FavoritesContextProvider>
+
+					<CartContextProvider>
+
+						<NavigationContainer>
+
+							<DrawerNavigation />
+
+						</NavigationContainer>
+
+					</CartContextProvider>
+
+				</FavoritesContextProvider>
+
+			</AuthContextProvider>
+
 		</>
 
 	);
