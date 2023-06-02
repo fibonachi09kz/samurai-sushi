@@ -3,31 +3,21 @@ import { NavigationContainer, useNavigationState } from "@react-navigation/nativ
 import DrawerNavigation from "./navigation/DrawerNavigation";
 import {useRef} from "react";
 import CartContextProvider from "./store/context/cart-context";
+import FavoriteContext from "./store/context/favorite-context";
+import FavoritesContextProvider from "./store/context/favorite-context";
 
 const App = () => {
-
-	const navigationRef = useRef();
-	const routeNameRef = useRef();
-
-	const handleNavigationStateChange = () => {
-		const previousRouteName = routeNameRef.current;
-		const currentRouteName = navigationRef.current.getCurrentRoute().name;
-
-		if (previousRouteName !== currentRouteName) {
-			console.log('Previous Route:', previousRouteName);
-			console.log('Current Route:', currentRouteName);
-			routeNameRef.current = currentRouteName;
-		}
-	};
 
 	return (
 		<>
 			<StatusBar style="dark" />
-			<CartContextProvider>
-				<NavigationContainer ref={navigationRef} onStateChange={handleNavigationStateChange}>
-					<DrawerNavigation />
-				</NavigationContainer>
-			</CartContextProvider>
+			<FavoritesContextProvider>
+				<CartContextProvider>
+					<NavigationContainer>
+						<DrawerNavigation />
+					</NavigationContainer>
+				</CartContextProvider>
+			</FavoritesContextProvider>
 		</>
 
 	);

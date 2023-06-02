@@ -10,12 +10,6 @@ const ProductList = ({ navigation, route }) => {
 	const filteredProducts = PRODUCTS.filter((item) => item.categoryIds === route.params.category.id)
 	const currentCategory = route.params.category;
 
-	const pressHandler = (product) => {
-		navigation.push("ProductDetail", {
-			product: product
-		})
-	}
-
 	return (
 		<ScrollView style={styles.main}>
 			<Text style={styles.title}>{currentCategory.title}</Text>

@@ -7,6 +7,8 @@ import CategoriesScreen from "../screens/Categories/CategoriesScreen";
 import ProductList from "../screens/ProductList";
 import {useNavigation} from "@react-navigation/native";
 import CartScreen from "../screens/Cart/CartScreen";
+import FavoritesScreen from "../screens/Favorite/FavoritesScreen";
+import ProfileScreen from "../screens/Profile/ProfileScreen";
 
 const Stack = createStackNavigator();
 export const StackNavigatorHome = ({ navigation }) => (
@@ -99,6 +101,52 @@ export const StackNavigatorCart = ({ navigation }) => {
 			<Stack.Screen
 				name="Cart"
 				component={CartScreen}
+				options={{
+					headerTitle: "",
+					headerLeft: () => (
+						<TouchableOpacity style={styles.menuBtn} onPress={() => navigation.openDrawer()}>
+							<Ionicons name="menu" size={28} color="black"/>
+						</TouchableOpacity>
+					)
+				}}
+			/>
+
+		</Stack.Navigator>
+	);
+}
+
+export const StackNavigatorFavorite = ({ navigation }) => {
+
+	return (
+		<Stack.Navigator
+			initialRouteName="Favorites"
+		>
+			<Stack.Screen
+				name="Favorites"
+				component={FavoritesScreen}
+				options={{
+					headerTitle: "",
+					headerLeft: () => (
+						<TouchableOpacity style={styles.menuBtn} onPress={() => navigation.openDrawer()}>
+							<Ionicons name="menu" size={28} color="black"/>
+						</TouchableOpacity>
+					)
+				}}
+			/>
+
+		</Stack.Navigator>
+	);
+}
+
+export const StackNavigatorProfile = ({ navigation }) => {
+
+	return (
+		<Stack.Navigator
+			initialRouteName="Profile"
+		>
+			<Stack.Screen
+				name="Profile"
+				component={ProfileScreen}
 				options={{
 					headerTitle: "",
 					headerLeft: () => (

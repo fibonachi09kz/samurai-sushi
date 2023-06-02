@@ -6,22 +6,19 @@ import {useContext, useState} from "react";
 import {COLORS} from "../constants/colors";
 
 import { CartContext } from "../store/context/cart-context";
+import {FavoritesContext} from "../store/context/favorite-context";
 
 const ProductDetailScreen = ({ route }) => {
 
 	const cartProductCtx = useContext(CartContext)
+	const favoriteCtx = useContext(FavoritesContext)
 
 	const product = route.params.product
 
-	const isProductInCart = cartProductCtx.products.some(item => item.product.id === product.id);
-
 	const [count, setCount] = useState(1)
 
-
-	function getCountInCart(productId) {
-		const cartItem = cartProductCtx.products.find((item) => item.product.id === productId);
-		return cartItem ? cartItem.count : 0;
-	}
+	let cartItem = cartProductCtx.products.find((item) => item.product.id === product.id);
+	let countInCart = cartItem ? cartItem.count : 0;
 
 
 	const inc = () => {
@@ -36,8 +33,21 @@ const ProductDetailScreen = ({ route }) => {
 	}
 
 	const addToBasket = () => {
-		cartProductCtx.addProduct(product, count)
-		Vibration.vibrate()
+		if (countInCart) {
+			cartProductCtx.removeProduct(product.id)
+		} else {
+			cartProductCtx.addProduct(product, count)
+			Vibration.vibrate()
+		}
+	}
+
+	const productIsFavorite = favoriteCtx.ids.includes(product.id);
+	const favoriteToggle = (id) => {
+		if (productIsFavorite) {
+			favoriteCtx.removeFavorite(id);
+		} else {
+			favoriteCtx.addFavorite(id);
+		}
 	}
 
 	return (
@@ -47,7 +57,17 @@ const ProductDetailScreen = ({ route }) => {
 					<Image style={styles.image} source={{uri: product.imageUrl}} resizeMode="cover" />
 				</View>
 				<View style={styles.body}>
-					<Text style={styles.title}>{product.title}</Text>
+					<View style={styles.titleWrapper}>
+						<Text style={styles.title} numberOfLines={1}>{product.title}</Text>
+						<TouchableOpacity style={styles.favoriteBtn} onPress={() => favoriteToggle(product.id)}>
+							{productIsFavorite
+								?
+								<Ionicons name="heart-sharp" size={32} color={COLORS.mainRed} />
+								:
+								<Ionicons name="heart-outline" size={32} color={COLORS.mainRed} />
+							}
+						</TouchableOpacity>
+					</View>
 					<View style={styles.priceWrapper}>
 						<Text style={styles.price}>{product.price} {CURRENCIES[0].symbol}</Text>
 					</View>
@@ -64,9 +84,18 @@ const ProductDetailScreen = ({ route }) => {
 						<AntDesign name="plus" size={24} color="#d7000f" />
 					</TouchableOpacity>
 				</View>
-				<TouchableOpacity style={[styles.toBasket, {backgroundColor: isProductInCart ? "#12af00" : COLORS.mainRed}]} onPress={() => addToBasket()}>
-					<Text style={styles.toBasketText}>В корзину {count * product.price} {CURRENCIES[0].symbol}</Text>
-					{isProductInCart ? <Text style={styles.inCart}>В корзине {getCountInCart(product.id)} шт.</Text> : null}
+				<TouchableOpacity style={[styles.toBasket, {backgroundColor: countInCart ? "#12af00" : COLORS.mainRed}]} onPress={() => addToBasket()}>
+					{countInCart ?
+						(
+							<>
+								<Text style={styles.toBasketText}>В корзине {countInCart} шт.</Text>
+							</>
+						)
+						:
+						(
+							<Text style={styles.toBasketText}>В корзину {count * product.price} {CURRENCIES[0].symbol}</Text>
+						)
+					}
 				</TouchableOpacity>
 			</View>
 		</>
@@ -100,7 +129,15 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 20,
 		fontWeight: "500",
+	},
+	titleWrapper: {
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "space-between",
 		marginBottom: 10
+	},
+	favoriteBtn: {
+		paddingHorizontal: 5
 	},
 	priceWrapper: {
 		paddingBottom: 10,

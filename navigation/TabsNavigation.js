@@ -5,16 +5,23 @@ import {COLORS} from "../constants/colors";
 import FavoritesScreen from "../screens/Favorite/FavoritesScreen";
 import CartScreen from "../screens/Cart/CartScreen";
 import ProfileScreen from "../screens/Profile/ProfileScreen";
-import {StackNavigatorCart, StackNavigatorCategories, StackNavigatorHome} from "./StackNavigation";
+import {
+	StackNavigatorCart,
+	StackNavigatorCategories,
+	StackNavigatorFavorite,
+	StackNavigatorHome, StackNavigatorProfile
+} from "./StackNavigation";
 import CategoriesScreen from "../screens/Categories/CategoriesScreen";
 import {useContext} from "react";
 
 import { CartContext } from "../store/context/cart-context";
+import { FavoritesContext } from "../store/context/favorite-context";
 
 const Tab = createBottomTabNavigator();
 const TabsNavigation = () => {
 
 	const cartCtx = useContext(CartContext)
+	const favoriteCtx = useContext(FavoritesContext)
 
 	return (
 		<Tab.Navigator>
@@ -41,13 +48,15 @@ const TabsNavigation = () => {
 				}}
 			/>
 			<Tab.Screen
-				name="Favorites"
-				component={FavoritesScreen}
+				name="FavoritesStack"
+				component={StackNavigatorFavorite}
 				options={{
 					title: "Избранное",
 					tabBarButton: (props) => <TouchableOpacity {...props} />,
 					tabBarIcon: ({ focused }) => <Ionicons name="heart-circle-outline" size={32} color={focused ? COLORS.mainRed : "black"} />,
 					tabBarShowLabel: false,
+					tabBarBadge: favoriteCtx.ids.length,
+					tabBarBadgeStyle: favoriteCtx.ids.length ? {opacity: 1} : {opacity: 0},
 					headerShown: false
 				}}
 			/>
@@ -60,12 +69,13 @@ const TabsNavigation = () => {
 					tabBarIcon: ({ focused }) => <Ionicons name="basket-outline" size={32} color={focused ? COLORS.mainRed : "black"} />,
 					tabBarShowLabel: false,
 					tabBarBadge: cartCtx.products.length,
+					tabBarBadgeStyle: cartCtx.products.length ? {opacity: 1} : {opacity: 0},
 					headerShown: false
 				}}
 			/>
 			<Tab.Screen
-				name="Profile"
-				component={ProfileScreen}
+				name="ProfileStack"
+				component={StackNavigatorProfile}
 				options={{
 					title: "Профиль",
 					tabBarButton: (props) => <TouchableOpacity {...props} />,
