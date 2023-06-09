@@ -9,6 +9,7 @@ import {useNavigation} from "@react-navigation/native";
 import CartScreen from "../screens/Cart/CartScreen";
 import FavoritesScreen from "../screens/Favorite/FavoritesScreen";
 import ProfileScreen from "../screens/Profile/ProfileScreen";
+import LoginScreen from "../screens/Login/LoginScreen";
 
 const Stack = createStackNavigator();
 export const StackNavigatorHome = ({ navigation }) => (
@@ -142,8 +143,21 @@ export const StackNavigatorProfile = ({ navigation }) => {
 
 	return (
 		<Stack.Navigator
-			initialRouteName="Profile"
+			initialRouteName="Login"
 		>
+			<Stack.Screen
+				name="Login"
+				component={LoginScreen}
+				options={{
+					headerTitle: "",
+					headerLeft: () => (
+						<TouchableOpacity style={styles.menuBtn} onPress={() => navigation.openDrawer()}>
+							<Ionicons name="menu" size={28} color="black"/>
+						</TouchableOpacity>
+					)
+				}}
+			/>
+
 			<Stack.Screen
 				name="Profile"
 				component={ProfileScreen}
