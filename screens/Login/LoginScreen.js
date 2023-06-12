@@ -1,38 +1,47 @@
-import React, { useState } from "react";
+import {useContext, useState} from "react";
 import {
 	SafeAreaView,
 	ScrollView,
 	View,
-	Button,
 	TextInput,
 	StyleSheet,
-	Text,
+	Text, TouchableOpacity,
 } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { MaskedTextInput } from "react-native-mask-text";
+import {COLORS} from "../../constants/colors";
+import {loginUser} from "../../utils/auth";
+import {AuthContext} from "../../store/context/auth-context";
 
 const validationSchema = Yup.object().shape({
-	email: Yup.string().email("Invalid email").required("Email is required"),
-	password: Yup.string().required("Password is required"),
-	phone: Yup.string().test(
-		"phone",
-		"Phone number is required",
-		(value) => value && value.replace(/[^0-9]/g, "").length === 11
-	),
+	email: Yup.string().email("Неверный email").required("Email обязателен к заполнению"),
+	password: Yup.string().required("Пароль обязателен к заполнению"),
 });
 
-const LoginScreen = () => {
-	const [loader, setLoader] = useState(false);
+const LoginScreen = ({ navigation }) => {
+
+	const authCtx = useContext(AuthContext)
+
 	const [error, setError] = useState(false);
-	const [confirm, setConfirm] = useState(false);
+	const [loader, setLoader] = useState(false);
 
-	const handleFormSubmit = (values) => {
-		console.log(values);
-		// Perform form submission logic here
+	const loginHandler = async (values) => {
+		let { email, password } = values;
+		email = email.trim();
+		password = password.trim();
+
+		try {
+			setLoader(true)
+			setError(false)
+			const token = await loginUser('signInWithPassword', email, password)
+			setLoader(false)
+			authCtx.authenticate(token)
+		} catch (error) {
+			setError(true)
+			setLoader(false)
+		}
+
 	};
-
-	const [phone, setPhone] = useState('');
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -51,49 +60,67 @@ const LoginScreen = () => {
 					</Text>
 				</View>
 
+
+				{error && <Text style={styles.authError}>Неправильный логин или пароль, попробуйте ещё раз</Text> }
+
 				<Formik
 					initialValues={{
 						email: "",
-						password: "",
-						phone: "",
+						password: ""
 					}}
 					validationSchema={validationSchema}
-					onSubmit={handleFormSubmit}
+					onSubmit={loginHandler}
 				>
 					{({ handleChange, handleBlur, handleSubmit, values, errors }) => (
 						<View style={styles.formContainer}>
-							<TextInput
-								style={styles.input}
-								onChangeText={handleChange("email")}
-								onBlur={handleBlur("email")}
-								value={values.email}
-								placeholder="danya.fibonachi@example.com"
-							/>
-							{errors.email && (
-								<Text style={styles.errorText}>{errors.email}</Text>
-							)}
-							<MaskedTextInput
-								mask="+7 (799) 999-99-99"
-								onChangeText={handleChange("phone")}
-								style={styles.input}
-								value={values.phone}
-							/>
-							{errors.phone && (
-								<Text style={styles.errorText}>{errors.phone}</Text>
-							)}
-							<TextInput
-								style={styles.input}
-								onChangeText={handleChange("password")}
-								onBlur={handleBlur("password")}
-								value={values.password}expo
-							/>
-							{errors.password && (
-								<Text style={styles.errorText}>{errors.password}</Text>
-							)}
-							<Button onPress={handleSubmit} title="Submit" />
+
+							<View style={styles.inputContainer}>
+								<Text style={styles.inputLabel}>E-mail</Text>
+								<TextInput
+									style={styles.input}
+									onChangeText={handleChange("email")}
+									onBlur={handleBlur("email")}
+									value={values.email}
+									placeholder="danya.fibonachi@example.com"
+								/>
+								{errors.email && (
+									<Text style={styles.errorText}>{errors.email}</Text>
+								)}
+							</View>
+
+							<View style={styles.inputContainer}>
+								<Text style={styles.inputLabel}>Пароль</Text>
+								<TextInput
+									secureTextEntry={true}
+									style={styles.input}
+									onChangeText={handleChange("password")}
+									onBlur={handleBlur("password")}
+									value={values.password}
+									placeholder="Введите пароль"
+								/>
+								{errors.password && (
+									<Text style={styles.errorText}>{errors.password}</Text>
+								)}
+							</View>
+
+							{loader ?
+								<View style={styles.regStatus}>
+									<Text style={styles.regStatusText}>Вход ...</Text>
+								</View>
+								:
+								<TouchableOpacity onPress={handleSubmit} style={styles.submitBtn} activeOpacity={0.7}>
+									<Text style={styles.submitBtnText}>Войти</Text>
+								</TouchableOpacity>
+							}
 						</View>
+
 					)}
 				</Formik>
+				<View style={styles.bottomText}>
+					<TouchableOpacity onPress={() => navigation.navigate("Registration")}>
+						<Text style={styles.relinkText}>Зарегистрироваться</Text>
+					</TouchableOpacity>
+				</View>
 			</ScrollView>
 		</SafeAreaView>
 	);
@@ -126,7 +153,7 @@ const styles = StyleSheet.create({
 		color: "#888",
 	},
 	formContainer: {
-		marginBottom: 20,
+		marginBottom: 10,
 	},
 	input: {
 		height: 40,
@@ -134,12 +161,58 @@ const styles = StyleSheet.create({
 		borderColor: "#ccc",
 		borderRadius: 5,
 		paddingHorizontal: 10,
-		marginBottom: 10,
+		marginBottom: 2,
 	},
 	errorText: {
-		color: "red",
-		marginBottom: 10,
+		color: COLORS.mainRed,
+		fontSize: 12
 	},
+	inputContainer: {
+		marginBottom: 10
+	},
+	inputLabel: {
+		fontSize: 14,
+		marginBottom: 3
+	},
+	relinkText: {
+		fontSize: 16,
+		textAlign: "center",
+		color: COLORS.mainRed,
+		fontWeight: "500"
+	},
+	submitBtn: {
+		padding: 10,
+		borderWidth: 1,
+		borderColor: COLORS.mainRed,
+		backgroundColor: COLORS.mainRed,
+		borderRadius: 5,
+		marginTop: 10
+	},
+	submitBtnText: {
+		textAlign: "center",
+		fontSize: 18,
+		color: "#FFFFFF",
+		fontWeight: "500"
+	},
+	regStatus: {
+		padding: 10,
+		borderWidth: 1,
+		borderColor: COLORS.mainRed,
+		backgroundColor: COLORS.mainRed,
+		borderRadius: 5,
+		marginTop: 10
+	},
+	regStatusText: {
+		textAlign: "center",
+		fontSize: 18,
+		color: "#FFFFFF",
+		fontWeight: "500"
+	},
+	authError: {
+		fontSize: 14,
+		color: COLORS.mainRed,
+		marginBottom: 8
+	}
 });
 
 export default LoginScreen;

@@ -10,8 +10,12 @@ import CartScreen from "../screens/Cart/CartScreen";
 import FavoritesScreen from "../screens/Favorite/FavoritesScreen";
 import ProfileScreen from "../screens/Profile/ProfileScreen";
 import LoginScreen from "../screens/Login/LoginScreen";
+import RegistrationScreen from "../screens/Registration/RegistrationScreen";
+import {AuthContext} from "../store/context/auth-context";
+import {useContext} from "react";
 
 const Stack = createStackNavigator();
+
 export const StackNavigatorHome = ({ navigation }) => (
 	<Stack.Navigator
 		initialRouteName="Home"
@@ -141,6 +145,33 @@ export const StackNavigatorFavorite = ({ navigation }) => {
 
 export const StackNavigatorProfile = ({ navigation }) => {
 
+	const authCtx = useContext(AuthContext)
+
+	return (
+		<Stack.Navigator
+			initialRouteName="Profile"
+		>
+
+			<Stack.Screen
+				name="Profile"
+				component={ProfileScreen}
+				options={{
+					headerTitle: "",
+					headerLeft: () => (
+						<TouchableOpacity style={styles.menuBtn} onPress={authCtx.logout}>
+							<Ionicons name="exit-outline" size={28} color="black" />
+						</TouchableOpacity>
+					)
+				}}
+			/>
+
+		</Stack.Navigator>
+	);
+}
+
+
+export const StackNavigatorAuth = ({ navigation }) => {
+
 	return (
 		<Stack.Navigator
 			initialRouteName="Login"
@@ -159,8 +190,8 @@ export const StackNavigatorProfile = ({ navigation }) => {
 			/>
 
 			<Stack.Screen
-				name="Profile"
-				component={ProfileScreen}
+				name="Registration"
+				component={RegistrationScreen}
 				options={{
 					headerTitle: "",
 					headerLeft: () => (
@@ -174,6 +205,9 @@ export const StackNavigatorProfile = ({ navigation }) => {
 		</Stack.Navigator>
 	);
 }
+
+
+
 
 const styles = StyleSheet.create({
 	menuBtn: {

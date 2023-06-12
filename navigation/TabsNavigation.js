@@ -6,6 +6,7 @@ import FavoritesScreen from "../screens/Favorite/FavoritesScreen";
 import CartScreen from "../screens/Cart/CartScreen";
 import ProfileScreen from "../screens/Profile/ProfileScreen";
 import {
+	StackNavigatorAuth,
 	StackNavigatorCart,
 	StackNavigatorCategories,
 	StackNavigatorFavorite,
@@ -16,12 +17,14 @@ import {useContext} from "react";
 
 import { CartContext } from "../store/context/cart-context";
 import { FavoritesContext } from "../store/context/favorite-context";
+import {AuthContext} from "../store/context/auth-context";
 
 const Tab = createBottomTabNavigator();
 const TabsNavigation = () => {
 
 	const cartCtx = useContext(CartContext)
 	const favoriteCtx = useContext(FavoritesContext)
+	const authCtx = useContext(AuthContext)
 
 	return (
 		<Tab.Navigator>
@@ -75,7 +78,7 @@ const TabsNavigation = () => {
 			/>
 			<Tab.Screen
 				name="ProfileStack"
-				component={StackNavigatorProfile}
+				component={authCtx.isAuthenticated ? StackNavigatorProfile : StackNavigatorAuth}
 				options={{
 					title: "Профиль",
 					tabBarButton: (props) => <TouchableOpacity {...props} />,
