@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import MaskInput from 'react-native-mask-input';
+import { MaskedTextInput } from "react-native-mask-text";
 
 const validationSchema = Yup.object().shape({
 	email: Yup.string().email("Invalid email").required("Email is required"),
@@ -72,18 +72,11 @@ const LoginScreen = () => {
 							{errors.email && (
 								<Text style={styles.errorText}>{errors.email}</Text>
 							)}
-							<MaskInput
-								value={phone}
-
-								onChangeText={(masked, unmasked) => {
-									setPhone(masked); // you can use the unmasked value as well
-
-									// assuming you typed "9" all the way:
-									console.log(masked); // (99) 99999-9999
-									console.log(unmasked); // 99999999999
-								}}
+							<MaskedTextInput
+								mask="+7 (799) 999-99-99"
+								onChangeText={handleChange("phone")}
 								style={styles.input}
-								mask={['(', /\d/, /\d/, ') ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/]}
+								value={values.phone}
 							/>
 							{errors.phone && (
 								<Text style={styles.errorText}>{errors.phone}</Text>
@@ -92,7 +85,7 @@ const LoginScreen = () => {
 								style={styles.input}
 								onChangeText={handleChange("password")}
 								onBlur={handleBlur("password")}
-								value={values.password}
+								value={values.password}expo
 							/>
 							{errors.password && (
 								<Text style={styles.errorText}>{errors.password}</Text>
@@ -109,6 +102,7 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		backgroundColor: "#ffffff"
 	},
 	scrollView: {
 		flexGrow: 1,
