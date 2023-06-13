@@ -13,6 +13,7 @@ import LoginScreen from "../screens/Login/LoginScreen";
 import RegistrationScreen from "../screens/Registration/RegistrationScreen";
 import {AuthContext} from "../store/context/auth-context";
 import {useContext} from "react";
+import OrderScreen from "../screens/Order/OrderScreen";
 
 const Stack = createStackNavigator();
 
@@ -116,9 +117,28 @@ export const StackNavigatorCart = ({ navigation }) => {
 				}}
 			/>
 
+			<Stack.Screen
+				name="OrderScreen"
+				component={OrderScreen}
+				options={({ navigation }) => ({
+					headerTitle: "",
+					headerLeft: () => (
+						<TouchableOpacity style={styles.menuBtn} onPress={() => navigation.goBack()}>
+							<Ionicons name="chevron-back" size={28} color="black" />
+						</TouchableOpacity>
+					)
+				})}
+			/>
+
 		</Stack.Navigator>
 	);
 }
+
+
+
+
+
+
 
 export const StackNavigatorFavorite = ({ navigation }) => {
 

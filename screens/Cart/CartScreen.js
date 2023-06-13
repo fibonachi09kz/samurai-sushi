@@ -48,13 +48,11 @@ const CartScreen = () => {
 	const renderCartItem = ({ item }) => {
 
 		const inc = (currentCount) => {
-			console.log(currentCount)
 			if (currentCount !== 99) {
 				cartCtx.editProduct(item.product, currentCount + 1)
 			}
 		}
 		const dec = (currentCount) => {
-			console.log(currentCount)
 			if (currentCount !== 1 && currentCount > 1) {
 				cartCtx.editProduct(item.product, currentCount - 1)
 			}
@@ -127,6 +125,11 @@ const CartScreen = () => {
 						</View>
 
 					</View>
+
+					<TouchableOpacity style={styles.orderContainer} activeOpacity={0.7} onPress={() => navigation.navigate("OrderScreen")}>
+						<Text style={styles.orderText}>Оформить заказ</Text>
+					</TouchableOpacity>
+
 				</View>
 			</ScrollView>
 		)
@@ -143,6 +146,19 @@ const CartScreen = () => {
 };
 
 const styles = StyleSheet.create({
+	orderContainer: {
+		borderRadius: 6,
+		backgroundColor: COLORS.mainRed,
+		marginBottom: 70,
+		paddingVertical: 12,
+		paddingHorizontal: 20
+	},
+	orderText: {
+		fontSize: 20,
+		color: "#FFFFFF",
+		fontWeight: "500",
+		textAlign: "center"
+	},
 	mainCon: {
 		marginBottom: 20,
 	},
@@ -215,7 +231,7 @@ const styles = StyleSheet.create({
 		paddingVertical: 16,
 		paddingHorizontal: 16,
 		backgroundColor: "#FFFFFF",
-		marginBottom: 70,
+		marginBottom: 20,
 		borderRadius: 6,
 		borderWidth: 1,
 		borderColor: "#e0e0e0"
